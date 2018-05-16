@@ -15,9 +15,13 @@ public class ClienteMain extends AppCompatActivity implements BottomNavigationVi
     BottomNavigationView bottomNavigationView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cliente_main);
+
+        Bundle recibe = new Bundle();
+        recibe = this.getIntent().getExtras();
+        String correo = recibe.getString("correo");
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -26,18 +30,23 @@ public class ClienteMain extends AppCompatActivity implements BottomNavigationVi
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item)
+    {
         Fragment fragment = null;
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             case R.id.nav_inicio:
                 fragment = new InicioFragment();
                 break;
+
             case R.id.nav_catalogo:
                 fragment = new CatalogoFragment();
                 break;
+
             case R.id.nav_carrito:
                 fragment = new CarritoFragment();
                 break;
+
             case R.id.nav_cuenta:
                 fragment = new CuentaFragment();
                 break;

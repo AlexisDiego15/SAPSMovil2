@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 toast1.show();
 
                 Intent c = new Intent(this, ClienteMain.class);
+                Bundle datos = new Bundle();
+                datos.putString("correo", us);
+                c.putExtras(datos);
                 startActivity(c);
                 finish();
             }
