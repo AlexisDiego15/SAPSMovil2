@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 public class CuentaFragment extends Fragment {
     String em;
-    TextView muestraCo;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -17,11 +16,10 @@ public class CuentaFragment extends Fragment {
         ClienteMain activity = (ClienteMain) getActivity();
         em = activity.getMyData();
 
-        muestraCo = (TextView) view.findViewById(R.id.txtcorreo);
+        /*muestraCo = (TextView) view.findViewById(R.id.txtcorreo);
         muestraCo.setText(em);
+*/
 
-
-        
 
 
         return view;

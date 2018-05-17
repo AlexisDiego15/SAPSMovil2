@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/17063378/how-to-pass-bundle-from-fragment-to-fragment/17063584
+
+https://stackoverflow.com/questions/12739909/send-data-from-activity-to-fragment-in-android
