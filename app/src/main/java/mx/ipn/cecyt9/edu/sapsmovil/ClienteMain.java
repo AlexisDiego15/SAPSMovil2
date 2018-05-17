@@ -8,11 +8,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import static mx.ipn.cecyt9.edu.sapsmovil.R.styleable.BottomNavigationView;
 
 public class ClienteMain extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
+    private String correo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -21,7 +24,11 @@ public class ClienteMain extends AppCompatActivity implements BottomNavigationVi
 
         Bundle recibe = new Bundle();
         recibe = this.getIntent().getExtras();
-        String correo = recibe.getString("correo");
+        correo = recibe.getString("correo");
+
+        Toast toast1 = Toast.makeText(getApplicationContext(),
+                "Bienvenido "+correo, Toast.LENGTH_SHORT);
+        toast1.show();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -48,11 +55,14 @@ public class ClienteMain extends AppCompatActivity implements BottomNavigationVi
                 break;
 
             case R.id.nav_cuenta:
-                fragment = new CuentaFragment();
+                 fragment = new CuentaFragment();
                 break;
         }
         replaceFragment(fragment);
         return true;
+    }
+    public String getMyData() {
+        return correo;
     }
 
     private void setInitialFragment() {

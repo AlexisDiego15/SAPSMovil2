@@ -31,17 +31,13 @@ public class MainActivity extends AppCompatActivity {
         String usuario = email.getText().toString();
         String contra = pass.getText().toString();
 
-        fila = bd.rawQuery("select usuario,contra from cliente where usuario='"+usuario+"' and contra ='"+contra+"'", null);
+        fila = bd.rawQuery("select correo,contra from cliente where correo='"+usuario+"' and contra ='"+contra+"'", null);
 
         if(fila.moveToFirst()==true){
             String us = fila.getString(0);
             String pa = fila.getString(1);
 
             if(usuario.equals(us)&&contra.equals(pa)){
-
-                Toast toast1 = Toast.makeText(getApplicationContext(),
-                        "Bienvenido", Toast.LENGTH_SHORT);
-                toast1.show();
 
                 Intent c = new Intent(this, ClienteMain.class);
                 Bundle datos = new Bundle();
