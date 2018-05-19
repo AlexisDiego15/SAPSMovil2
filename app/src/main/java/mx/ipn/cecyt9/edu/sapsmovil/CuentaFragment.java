@@ -61,6 +61,7 @@ public class CuentaFragment extends Fragment implements View.OnClickListener {
             case R.id.cerrar:
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 startActivity(intent);
+                getActivity().onBackPressed();
                 break;
         }
     }
