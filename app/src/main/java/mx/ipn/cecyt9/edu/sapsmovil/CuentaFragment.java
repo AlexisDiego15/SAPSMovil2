@@ -59,6 +59,8 @@ public class CuentaFragment extends Fragment implements View.OnClickListener {
                 replaceFragment(fragment);
                 break;
             case R.id.cerrar:
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
                 break;
         }
     }
