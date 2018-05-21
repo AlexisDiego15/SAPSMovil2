@@ -1,13 +1,18 @@
 package mx.ipn.cecyt9.edu.sapsmovil;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
@@ -24,6 +29,9 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
     Cursor fila;
     Button envia;
     TextView mensajin;
+    String informacion;
+    ArrayList<String> lista;
+    ArrayList<Usuario> listausuarios = new ArrayList<Usuario>();;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,14 +45,11 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
         envia.setOnClickListener(this);
 
 
-        ArrayList<String> lista;
-        ArrayList<Usuario> listausuarios;
-
         ClienteSQLite clien = new ClienteSQLite(getActivity(), "clientes", null, 1);
         SQLiteDatabase bd = clien.getWritableDatabase();
 
         Usuario usuario = null;
-        listausuarios= new ArrayList<Usuario>();
+
 
         fila = bd.rawQuery("select id_men,remitente,cmensaje,respuesta from mensaje where remitente='" + em + "'", null);
 
@@ -66,10 +71,69 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
 
             ArrayAdapter listilla = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, lista);
             mensajes.setAdapter(listilla);
+
+            mensajes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                    informacion= listausuarios.get(pos).getId().toString();
+
+                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(getActivity());
+                    dialogo1.setTitle("Importante");
+                    dialogo1.setMessage("¿ Acepta borrar este mensaje?");
+                    dialogo1.setCancelable(false);
+                    dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                            aceptar();
+                        }
+                    });
+                    dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                            cancelar();
+                        }
+                    });
+                    dialogo1.show();
+                }
+
+
+
+            });
         }
         return view;
 
     }
+    public void aceptar() {
+        ClienteSQLite clien = new ClienteSQLite(getActivity(), "clientes", null, 1);
+        SQLiteDatabase bd = clien.getWritableDatabase();
+
+        int cant = bd.delete("mensaje","id_men='"+informacion+"'", null);
+        bd.close();
+        if (cant == 1) {
+            Toast toast = Toast.makeText(getActivity(),
+                    "Mensaje eliminado", Toast.LENGTH_SHORT);
+            toast.show();
+            Fragment fragment = new MensajeFragment();
+            replaceFragment(fragment);
+
+
+        } else {
+            Toast toast2 = Toast.makeText(getActivity(),
+                    "Ocurrio un error en la eliminacion", Toast.LENGTH_SHORT);
+            toast2.show();
+        }
+    }
+
+    public void replaceFragment(Fragment someFragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.main_fragment_placeholder, someFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    public void cancelar() {
+        Fragment fragment = new MensajeFragment();
+        replaceFragment(fragment);
+    }
+
 
 
     @Override
@@ -92,6 +156,9 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
             Toast toast1 = Toast.makeText(getActivity(),
                     "Mensaje enviado", Toast.LENGTH_SHORT);
             toast1.show();
+
+            Fragment fragment = new MensajeFragment();
+            replaceFragment(fragment);
     }else{
             Toast toast1 = Toast.makeText(getActivity(),
                     "Escribe un mensaje valido", Toast.LENGTH_SHORT);

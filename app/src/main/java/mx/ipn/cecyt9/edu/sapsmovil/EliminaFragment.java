@@ -34,7 +34,8 @@ public class EliminaFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
-    public void onClick(View view) { ClienteSQLite clien = new ClienteSQLite(getActivity(), "clientes", null, 1);
+    public void onClick(View view) {
+        ClienteSQLite clien = new ClienteSQLite(getActivity(), "clientes", null, 1);
         SQLiteDatabase bd = clien.getWritableDatabase();
 
         String ante = contra.getText().toString();
