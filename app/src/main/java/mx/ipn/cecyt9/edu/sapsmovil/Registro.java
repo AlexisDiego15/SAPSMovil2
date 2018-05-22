@@ -106,7 +106,7 @@ public class Registro extends AppCompatActivity {
                                                 "Registro exitoso", Toast.LENGTH_SHORT);
                                         toast1.show();
 
-                                        Intent c = new Intent(this, ClienteMain.class);
+                                        Intent c = new Intent(this, MainActivity.class);
                                         startActivity(c);
                                         finish();
 
