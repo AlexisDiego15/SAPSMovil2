@@ -9,59 +9,49 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
-import static mx.ipn.cecyt9.edu.sapsmovil.R.styleable.BottomNavigationView;
 
-public class ClienteMain extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class AdminMain extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
-    private String correo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cliente_main);
+        setContentView(R.layout.activity_admin_main);
 
-        Bundle recibe = new Bundle();
-        recibe = this.getIntent().getExtras();
-        correo = recibe.getString("correo");
 
         Toast toast1 = Toast.makeText(getApplicationContext(),
-                "Bienvenido "+correo, Toast.LENGTH_SHORT);
+                "Bienvenido admin", Toast.LENGTH_SHORT);
         toast1.show();
 
-        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationa);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         setInitialFragment();
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment fragment = null;
-        switch (item.getItemId())
-        {
-            case R.id.nav_inicio:
-                fragment = new InicioFragment();
+        switch (item.getItemId()) {
+            case R.id.nav_clientes:
+                fragment = new ClientesFragment();
                 break;
 
-            case R.id.nav_catalogo:
-                fragment = new CatalogoFragment();
+            case R.id.nav_ordenes:
+                fragment = new OrdenesFragment();
                 break;
 
-            case R.id.nav_carrito:
-                fragment = new CarritoFragment();
+            case R.id.nav_mensajes:
+                fragment = new MsjAdmiFragment();
                 break;
 
-            case R.id.nav_cuenta:
-                 fragment = new CuentaFragment();
+            case R.id.nav_configuracion:
+                fragment = new ConfiguracionFragment();
                 break;
         }
         replaceFragment(fragment);
         return true;
-    }
-    public String getMyData() {
-        return correo;
     }
 
     private void setInitialFragment() {

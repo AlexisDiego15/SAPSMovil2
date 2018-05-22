@@ -16,10 +16,10 @@ public class ClienteSQLite extends SQLiteOpenHelper {
         bd.execSQL("create table cliente(id integer primary key autoincrement, nombre text, apellido text, correo text, usuario text, contra text, celular integer)");
         bd.execSQL("create table mensaje(id_men integer primary key autoincrement, remitente text, cmensaje text, respuesta text)");
         bd.execSQL("create table productos(id_pro integer primary key autoincrement, nombrep text, precio integer, tipo text, descripcion text, cantidad integer)");
-       /* bd.execSQL("insert into productos values(1, 'bistek', 120, 'carnes', 'carne fresca', 120)");
-        bd.execSQL("insert into productos values(2, 'leche deslactosada', 9, 'lacteos', 'leche fresca', 200)");
-        bd.execSQL("insert into productos values(3, 'melon', 12, 'frutas', 'fruta fresca', 218)");
-        bd.execSQL("insert into productos values(4, 'jitomate', 18, 'verduras', 'verdura fresca', 172)");*/
+       /*bd.execSQL("insert into productos values(null, 'bistek', 120, 'carnes', 'carne fresca', 120)");
+        bd.execSQL("insert into productos values(null, 'leche deslactosada', 9, 'lacteos', 'leche fresca', 200)");
+        bd.execSQL("insert into productos values(null, 'melon', 12, 'frutas', 'fruta fresca', 218)");
+        bd.execSQL("insert into productos values(null, 'jitomate', 18, 'verduras', 'verdura fresca', 172)");*/
 
     }
 
@@ -28,8 +28,8 @@ public class ClienteSQLite extends SQLiteOpenHelper {
         bd.execSQL("create table cliente(id integer primary key autoincrement, nombre text, apellido text, correo text, usuario text, contra text, celular integer)");
         bd.execSQL("create table mensaje(id_men integer primary key autoincrement, remitente text, cmensaje text, respuesta text)");
         bd.execSQL("create table productos(id_pro integer primary key autoincrement, nombrep text, precio integer, tipo text, descripcion text, cantidad integer)");
-       /*bd.execSQL("insert into productos values(1, 'bistek', 120, 'carnes', 'carne fresca', 120)");
-        bd.execSQL("insert into productos values(2, 'leche deslactosada', 9, 'lacteos', 'leche fresca', 200)");
-        bd.execSQL("insert into productos values(3, 'melon', 12, 'frutas', 'fruta fresca', 218)");
-        bd.execSQL("insert into productos values(4, 'jitomate', 18, 'verduras', 'verdura fresca', 172)");*/
+       /*bd.execSQL("insert into productos values(null, 'bistek', 120, 'carnes', 'carne fresca', 120)");
+        bd.execSQL("insert into productos values(null, 'leche deslactosada', 9, 'lacteos', 'leche fresca', 200)");
+        bd.execSQL("insert into productos values(null, 'melon', 12, 'frutas', 'fruta fresca', 218)");
+        bd.execSQL("insert into productos values(null, 'jitomate', 18, 'verduras', 'verdura fresca', 172)");*/
     }}

@@ -7,13 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText email,pass;
     private Cursor fila;
-
+    Switch modo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         email = findViewById(R.id.editText);
         pass = findViewById(R.id.editText3);
+        modo = findViewById(R.id.switc);
     }
 
     public void validacion(View v) {
-
+        if(!modo.isChecked()){
         ClienteSQLite clien = new ClienteSQLite(this, "clientes", null, 1);
         SQLiteDatabase bd =clien.getWritableDatabase();
 
@@ -52,7 +54,12 @@ public class MainActivity extends AppCompatActivity {
                     "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT);
             toast2.show();
         }
-    }
+    }else{
+            Intent a = new Intent(this, AdminMain.class);
+            startActivity(a);
+            finish();
+        }}
+
 
     public void crear(View v){
         Intent inicio = new Intent(this, Registro.class);

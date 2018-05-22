@@ -31,7 +31,7 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
     TextView mensajin;
     String informacion;
     ArrayList<String> lista;
-    ArrayList<Usuario> listausuarios = new ArrayList<Usuario>();;
+    ArrayList<Usuario> listausuarios = new ArrayList<Usuario>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class MensajeFragment extends Fragment implements View.OnClickListener {
             lista = new ArrayList<String>();
 
             for (int i = 0; i < listausuarios.size(); i++) {
-                lista.add(listausuarios.get(i).getId() + " Mensaje: " + listausuarios.get(i).getMen() + "\n" +
+                lista.add("Mensaje: " + listausuarios.get(i).getMen() + "\n" +
                         " Respuesta: " + listausuarios.get(i).getRes());
             }
 

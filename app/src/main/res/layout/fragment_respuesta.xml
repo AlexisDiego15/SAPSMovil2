@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/responder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_res"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="29dp"
+        android:text="Responder" />
+
+    <TextView
+        android:id="@+id/view_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tx"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="37dp"
+        android:text="TextView" />
+
+    <EditText
+        android:id="@+id/txt_res"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="57dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/view_msj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/view_id"
+        android:layout_below="@+id/view_id"
+        android:layout_marginTop="48dp"
+        android:text="TextView" />
+</RelativeLayout>
