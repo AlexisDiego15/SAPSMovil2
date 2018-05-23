@@ -33,12 +33,6 @@
                 android:text="Ver administradores" />
 
             <Button
-                android:id="@+id/cambioda"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:text="Cambiar datos" />
-
-            <Button
                 android:id="@+id/cambioco"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"

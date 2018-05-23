@@ -11,7 +11,7 @@ import android.widget.Button;
 
 public class ConfiguracionFragment extends Fragment implements View.OnClickListener {
 
-    Button agr, ver, cam, campa, cie;
+    Button agr, ver, campa, cie;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -19,13 +19,11 @@ public class ConfiguracionFragment extends Fragment implements View.OnClickListe
 
         agr = (Button)view.findViewById(R.id.agrega);
         ver = (Button)view.findViewById(R.id.ver);
-        cam = (Button)view.findViewById(R.id.cambioda);
         campa = (Button)view.findViewById(R.id.cambioco);
         cie = (Button)view.findViewById(R.id.cierra);
 
         agr.setOnClickListener(this);
         ver.setOnClickListener(this);
-        cam.setOnClickListener(this);
         campa.setOnClickListener(this);
         cie.setOnClickListener(this);
 
@@ -43,10 +41,6 @@ public class ConfiguracionFragment extends Fragment implements View.OnClickListe
 
             case R.id.ver:
                 fragment = new VerAdmiFragment();
-                replaceFragment(fragment);
-                break;
-            case R.id.cambioda:
-                fragment = new DatosAdmFragment();
                 replaceFragment(fragment);
                 break;
             case R.id.cambioco:

@@ -25,7 +25,7 @@ public class AdminMain extends AppCompatActivity implements BottomNavigationView
         correo = recibe.getString("correo");
 
         Toast toast1 = Toast.makeText(getApplicationContext(),
-                "Bienvenido admin", Toast.LENGTH_SHORT);
+                "Bienvenido Administrador", Toast.LENGTH_SHORT);
         toast1.show();
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.navigationa);

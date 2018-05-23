@@ -67,7 +67,6 @@ public class VerAdmiFragment extends Fragment {
                     mens.putString("mensaje2", informacion2);
                     mens.putString("mensaje3", informacion3);
                     fragment.setArguments(mens);
-                    getActivity().onBackPressed();
 
                 }
             });
