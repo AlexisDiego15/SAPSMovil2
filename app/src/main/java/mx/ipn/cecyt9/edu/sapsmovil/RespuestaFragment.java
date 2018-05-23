@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class RespuestaFragment extends Fragment implements View.OnClickListener {
 
-    String id, info;
+    String id, info, resp;
     TextView _id, _msj, _respuesta;
     Button _res;
 
@@ -35,6 +35,7 @@ public class RespuestaFragment extends Fragment implements View.OnClickListener 
         recupera = getArguments();
         info =recupera.getString("mensaje");
         id = recupera.getString("id_m");
+        resp = recupera.getString("resp");
 
 
         _res = (Button) view.findViewById(R.id.responder);
@@ -48,6 +49,13 @@ public class RespuestaFragment extends Fragment implements View.OnClickListener 
         _id.setText(id);
         _msj.setText(info);
 
+        if(!resp.equals("Sin respuesta aun")){
+            _respuesta.setEnabled(false);
+            _respuesta.setText("Ya fue respondido el mensaje");
+            _res.setEnabled(false);
+
+        }
+
 
 
         return view;
@@ -56,45 +64,47 @@ public class RespuestaFragment extends Fragment implements View.OnClickListener 
     @Override
     public void onClick(View view) {
 
-        ClienteSQLite clien = new ClienteSQLite(getActivity(), "clientes", null, 1);
-        SQLiteDatabase bd = clien.getWritableDatabase();
 
-        String r2 =_respuesta.getText().toString();
 
-        if(_respuesta.getText().length()>=2){
+            ClienteSQLite clien = new ClienteSQLite(getActivity(), "clientes", null, 1);
+            SQLiteDatabase bd = clien.getWritableDatabase();
 
-            ContentValues registro = new ContentValues();
-            registro.put("respuesta", r2);
+            String r2 = _respuesta.getText().toString();
 
-            int cant = bd.update("mensaje", registro, "id_men='"+id+"'", null);
-            bd.close();
+            if (_respuesta.getText().length() >= 2) {
 
-            if (cant == 1) {
-                Toast toast = Toast.makeText(getActivity(),
-                        "Respuesta enviada", Toast.LENGTH_SHORT);
-                toast.show();
-                MsjAdmiFragment nextFrag= new MsjAdmiFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_fragment_placeholder, nextFrag,"findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                ContentValues registro = new ContentValues();
+                registro.put("respuesta", r2);
+
+                int cant = bd.update("mensaje", registro, "id_men='" + id + "'", null);
+                bd.close();
+
+                if (cant == 1) {
+                    Toast toast = Toast.makeText(getActivity(),
+                            "Respuesta enviada", Toast.LENGTH_SHORT);
+                    toast.show();
+                    MsjAdmiFragment nextFrag = new MsjAdmiFragment();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_fragment_placeholder, nextFrag, "findThisFragment")
+                            .addToBackStack(null)
+                            .commit();
+
+                } else {
+                    Toast toast2 = Toast.makeText(getActivity(),
+                            "Ocurrio un error en los cambios", Toast.LENGTH_SHORT);
+                    toast2.show();
+                    MsjAdmiFragment nextFrag = new MsjAdmiFragment();
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.main_fragment_placeholder, nextFrag, "findThisFragment")
+                            .addToBackStack(null)
+                            .commit();
+                }
+
 
             } else {
-                Toast toast2 = Toast.makeText(getActivity(),
-                        "Ocurrio un error en los cambios", Toast.LENGTH_SHORT);
-                toast2.show();
-                MsjAdmiFragment nextFrag= new MsjAdmiFragment();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.main_fragment_placeholder, nextFrag,"findThisFragment")
-                        .addToBackStack(null)
-                        .commit();
+                _respuesta.setError("Escribe una respuesta valida");
+                _respuesta.requestFocus();
             }
-
-
-        }else{
-            _respuesta.setError("Escribe una respuesta valida");
-            _respuesta.requestFocus();
-        }
 
 
 

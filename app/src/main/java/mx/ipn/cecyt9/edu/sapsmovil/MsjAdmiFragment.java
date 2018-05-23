@@ -47,7 +47,8 @@ public class MsjAdmiFragment extends Fragment {
 
             for (int i = 0; i < listausuarios.size(); i++) {
                 lista.add("Mensaje: " + listausuarios.get(i).getMen() + "\n" +
-                        " Usuario: " + listausuarios.get(i).getRem());
+                        "Usuario: " + listausuarios.get(i).getRem()+ "\n" +
+                        "Respuesta: " +listausuarios.get(i).getRes());
             }
 
 
@@ -59,7 +60,7 @@ public class MsjAdmiFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                     id_men = listausuarios.get(pos).getId().toString();
-
+                    String respuestilla = listausuarios.get(pos).getRes();
                     informacion = "Mensaje: "+listausuarios.get(pos).getMen()+"\n";
                     informacion+= "Usuario: "+listausuarios.get(pos).getRem()+"\n";
                     Fragment fragment = new RespuestaFragment();
@@ -67,6 +68,8 @@ public class MsjAdmiFragment extends Fragment {
                     replaceFragment(fragment);
                     men.putString("mensaje", informacion);
                     men.putString("id_m", id_men);
+                    men.putString("resp", respuestilla);
+
                     fragment.setArguments(men);
 
                 }

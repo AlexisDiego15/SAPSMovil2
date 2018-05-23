@@ -56,7 +56,7 @@ public class AdminMain extends AppCompatActivity implements BottomNavigationView
 
     private void setInitialFragment() {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.main_fragment_placeholder, new InicioFragment());
+        fragmentTransaction.add(R.id.main_fragment_placeholder, new ConfiguracionFragment());
         fragmentTransaction.commit();
     }
 

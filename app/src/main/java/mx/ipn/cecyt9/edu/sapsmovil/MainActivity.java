@@ -64,5 +64,6 @@ public class MainActivity extends AppCompatActivity {
     public void crear(View v){
         Intent inicio = new Intent(this, Registro.class);
         startActivity(inicio);
+        finish();
     }
 }
