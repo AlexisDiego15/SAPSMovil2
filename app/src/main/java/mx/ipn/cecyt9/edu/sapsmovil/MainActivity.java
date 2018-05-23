@@ -54,10 +54,35 @@ public class MainActivity extends AppCompatActivity {
                     "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT);
             toast2.show();
         }
-    }else{
-            Intent a = new Intent(this, AdminMain.class);
-            startActivity(a);
-            finish();
+    }else{ClienteSQLite clien = new ClienteSQLite(this, "clientes", null, 1);
+            SQLiteDatabase bd =clien.getWritableDatabase();
+
+            String usuario = email.getText().toString();
+            String contra = pass.getText().toString();
+
+            fila = bd.rawQuery("select usuario,contra from admin where usuario='"+usuario+"' and contra ='"+contra+"'", null);
+
+            if(fila.moveToFirst()==true){
+                String us = fila.getString(0);
+                String pa = fila.getString(1);
+
+                if(usuario.equals(us)&&contra.equals(pa)){
+
+                    Intent a = new Intent(this, AdminMain.class);
+                    Bundle datos = new Bundle();
+                    datos.putString("correo", us);
+                    a.putExtras(datos);
+                    startActivity(a);
+                    finish();
+                }
+            }
+            else {
+                Toast toast2 = Toast.makeText(getApplicationContext(),
+                        "Usuario o contraseña incorrecta", Toast.LENGTH_SHORT);
+                toast2.show();
+            }
+
+
         }}
 
 

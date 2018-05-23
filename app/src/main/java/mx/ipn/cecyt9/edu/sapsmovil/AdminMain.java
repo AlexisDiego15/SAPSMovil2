@@ -13,12 +13,16 @@ import android.widget.Toast;
 public class AdminMain extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView bottomNavigationView;
+    String correo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
+        Bundle recibe = new Bundle();
+        recibe = this.getIntent().getExtras();
+        correo = recibe.getString("correo");
 
         Toast toast1 = Toast.makeText(getApplicationContext(),
                 "Bienvenido admin", Toast.LENGTH_SHORT);
@@ -52,6 +56,9 @@ public class AdminMain extends AppCompatActivity implements BottomNavigationView
         }
         replaceFragment(fragment);
         return true;
+    }
+    public String getMyData() {
+        return correo;
     }
 
     private void setInitialFragment() {

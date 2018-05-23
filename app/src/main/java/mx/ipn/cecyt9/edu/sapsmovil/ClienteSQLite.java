@@ -14,6 +14,8 @@ public class ClienteSQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase bd) {
         bd.execSQL("create table cliente(id integer primary key autoincrement, nombre text, apellido text, correo text, usuario text, contra text, celular integer)");
+        bd.execSQL("create table admin(id integer primary key autoincrement, nombre text, apellido text, usuario text, contra text)");
+        bd.execSQL("insert into admin values(null,'Joel','Angeles','admin','admin')");
         bd.execSQL("create table mensaje(id_men integer primary key autoincrement, remitente text, cmensaje text, respuesta text)");
         bd.execSQL("create table productos(id_pro integer primary key autoincrement, nombrep text, precio integer, tipo text, descripcion text, cantidad integer)");
        /*bd.execSQL("insert into productos values(null, 'bistek', 120, 'carnes', 'carne fresca', 120)");
@@ -26,6 +28,7 @@ public class ClienteSQLite extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase bd, int old, int nuevo) {
         bd.execSQL("create table cliente(id integer primary key autoincrement, nombre text, apellido text, correo text, usuario text, contra text, celular integer)");
+        bd.execSQL("create table admin(id integer primary key autoincrement, nombre text, apellido text, usuario text, contra text)");
         bd.execSQL("create table mensaje(id_men integer primary key autoincrement, remitente text, cmensaje text, respuesta text)");
         bd.execSQL("create table productos(id_pro integer primary key autoincrement, nombrep text, precio integer, tipo text, descripcion text, cantidad integer)");
        /*bd.execSQL("insert into productos values(null, 'bistek', 120, 'carnes', 'carne fresca', 120)");
